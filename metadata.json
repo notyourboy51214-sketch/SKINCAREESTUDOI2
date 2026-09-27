@@ -1,0 +1,6 @@
+{
+  "name": "Skin Care Axis — Dermatology Clinic Lahore",
+  "description": "Premier dermatology clinic in Nasheman-e-Iqbal Phase 1, Lahore. Rated 4.9/5 by 57 patients. Specializing in Hydrafacial, attentive consultations, and reactive, sensitive, and acne-prone skin care.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
