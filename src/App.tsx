@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { SectionId, ConcernCategory, BookingFormData } from './types';
 import { CLINIC_INFO, TREATMENTS, CONCERN_DETAILS, PATIENT_STORIES, FAQ_ITEMS } from './data/clinicData';
-import { IMAGES } from './assets/images';
+import { IMAGES, IMAGE_FALLBACKS } from './assets/images';
 import { ImageMaskReveal } from './components/ImageMaskReveal';
 import { NavigationRail } from './components/NavigationRail';
 import { Footer } from './components/Footer';
@@ -247,6 +247,7 @@ export default function App() {
               <div className="lg:col-span-6 relative">
                 <ImageMaskReveal
                   src={IMAGES.heroSkinTexture}
+                  fallbackSrcs={IMAGE_FALLBACKS.heroSkinTexture}
                   alt="Macro healthy dewy skin texture and delicate moisture barrier"
                   aspectRatioClass="aspect-[4/5] sm:aspect-[3/4]"
                   caption="Clinical Hydrafacial & Barrier Health Protocol"
@@ -365,6 +366,7 @@ export default function App() {
               <div className="lg:col-span-7">
                 <ImageMaskReveal
                   src={IMAGES.clinicInterior}
+                  fallbackSrcs={IMAGE_FALLBACKS.clinicInterior}
                   alt="Bright airy modern dermatology clinic interior consultation suite in Lahore"
                   aspectRatioClass="aspect-[16/10]"
                   caption="Clinical Suite · Spotless, Quiet & Natural Daylight"
@@ -462,6 +464,7 @@ export default function App() {
                   <div className="lg:col-span-6">
                     <ImageMaskReveal
                       src={IMAGES.hydrafacialTreatment}
+                      fallbackSrcs={IMAGE_FALLBACKS.hydrafacialTreatment}
                       alt="Gentle clinical hydrafacial treatment with vortex wand infusion"
                       aspectRatioClass="aspect-[4/3]"
                       caption="Flagship Medical Hydrafacial Protocol"
@@ -684,6 +687,7 @@ export default function App() {
               <div className="lg:col-span-6">
                 <ImageMaskReveal
                   src={IMAGES.consultationDesk}
+                  fallbackSrcs={IMAGE_FALLBACKS.consultationDesk}
                   alt="Dermatologist consultation desk with dermatoscope instrument and appointment notes"
                   aspectRatioClass="aspect-[4/3]"
                   caption="The Consultation Room · Dedicated Diagnostic Assessment"
@@ -827,6 +831,7 @@ export default function App() {
               <div className="lg:col-span-6">
                 <ImageMaskReveal
                   src={IMAGES.serumBottles}
+                  fallbackSrcs={IMAGE_FALLBACKS.serumBottles}
                   alt="Clean glass skincare bottles and dropper serums in natural morning window light"
                   aspectRatioClass="aspect-[4/3]"
                   caption="Physiologic Lipid Serums & Clean Formulations"

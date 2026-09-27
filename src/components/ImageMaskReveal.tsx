@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles } from 'lucide-react';
 
 interface ImageMaskRevealProps {
   src: string;
+  fallbackSrcs?: string[];
   alt: string;
   className?: string;
   aspectRatioClass?: string;
@@ -12,13 +13,34 @@ interface ImageMaskRevealProps {
 
 export const ImageMaskReveal: React.FC<ImageMaskRevealProps> = ({
   src,
+  fallbackSrcs = [],
   alt,
   className = '',
   aspectRatioClass = 'aspect-[4/3]',
   caption
 }) => {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [fallbackIndex, setFallbackIndex] = useState(-1);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setCurrentSrc(src);
+    setFallbackIndex(-1);
+    setHasError(false);
+    setIsLoaded(false);
+  }, [src]);
+
+  const handleImageError = () => {
+    const nextIndex = fallbackIndex + 1;
+    if (fallbackSrcs && nextIndex < fallbackSrcs.length) {
+      setFallbackIndex(nextIndex);
+      setCurrentSrc(fallbackSrcs[nextIndex]);
+      setIsLoaded(false);
+    } else {
+      setHasError(true);
+    }
+  };
 
   return (
     <div className={`relative overflow-hidden rounded-xl bg-[#EEF3ED] border border-[#3C4A3B]/10 ${className}`}>
@@ -32,11 +54,10 @@ export const ImageMaskReveal: React.FC<ImageMaskRevealProps> = ({
       >
         {!hasError ? (
           <img
-            src={src}
+            src={currentSrc}
             alt={alt}
-            referrerPolicy="no-referrer"
             onLoad={() => setIsLoaded(true)}
-            onError={() => setHasError(true)}
+            onError={handleImageError}
             className={`w-full h-full object-cover transition-transform duration-700 hover:scale-105 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             } transition-opacity duration-500`}
